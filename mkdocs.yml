@@ -8,6 +8,13 @@ theme:
 
 nav:
   - Home: index.md
+  - User Guides:
+    - Expansion: expansion.md
+    - Compression: compression.md
+    - Set Operations: set_operations.md
+    - Collection API: collection_api.md
+    - Formatting: formatting.md
+    - CLI Tool: cli.md
   - API Reference: api.md
 
 plugins:
