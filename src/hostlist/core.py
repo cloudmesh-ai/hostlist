@@ -177,21 +177,23 @@ class Hostlist:
 
         groups = _group_by_prefix(self.hosts)
         parts = []
-        # Sort groups to keep output consistent
         for (prefix, suffix) in sorted(groups.keys()):
             nums = groups[(prefix, suffix)]
-            nums.sort()
-            # infer padding width from the first occurrence of this prefix/suffix
-            first = next(
-                h for h in self.hosts if h.startswith(prefix) and h.endswith(suffix)
-            )
-            # extract numeric part for padding
-            num_match = re.search(rf"{re.escape(prefix)}(?P<num>\d+){re.escape(suffix)}", first)
-            if not num_match:
+            
+            numeric = sorted([n for n in nums if n is not None])
+            
+            if not numeric:
+                # Just a literal host
+                parts.append(f"{prefix}{suffix}")
                 continue
-            pad = len(num_match.group("num"))
-            comp = _compress_numbers(nums, pad=pad)
-            parts.append(f"{prefix}[{comp}]{suffix}")
+            
+            # Infer padding width from the first numeric occurrence of this prefix/suffix
+            first_host = next(h for h in self.hosts if h.startswith(prefix) and h.endswith(suffix) and any(c.isdigit() for c in h))
+            num_match = re.search(rf"{re.escape(prefix)}(?P<num>\d+){re.escape(suffix)}", first_host)
+            pad = len(num_match.group("num")) if num_match else 0
+            
+            parts.append(f"{prefix}[{_compress_numbers(numeric, pad)}]{suffix}")
+        
         return ",".join(parts)
 
     # ------------------------------------------------------------------
