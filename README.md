@@ -1,6 +1,6 @@
 # Hostlist
 
-A clean, modern, and fully‑typed Python library for parsing and manipulating Slurm‑style hostlists.
+A fully‑typed Python library for parsing and manipulating Slurm‑style hostlists.
 
 ## Features
 
