@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hostlist"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A library for parsing and manipulating Slurm-style hostlists."
 readme = "README.md"
 requires-python = ">=3.7"
@@ -17,3 +17,7 @@ dev = ["pytest"]
 hostlist = "hostlist.cli:main"
 hostlist-expand = "hostlist.cli:expand_wrapper"
 hostlist-compact = "hostlist.cli:compact_wrapper"
+
+[tool.setuptools.dynamic]
+version = {attr = "hostlist.__version__"}
+
