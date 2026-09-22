@@ -11,7 +11,7 @@ requires-python = ">=3.7"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest", "mkdocs", "mkdocs-material"]
+dev = ["pytest", "mkdocs", "mkdocs-material", "mkdocstrings[python]", "cloudmesh-ai-theme"]
 
 [project.scripts]
 hostlist = "hostlist.cli:main"
