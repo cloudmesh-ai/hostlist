@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hostlist"
+version = "0.1.0"
+description = "A library for parsing and manipulating Slurm-style hostlists."
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+hostlist = "hostlist.cli:main"
+hostlist-expand = "hostlist.cli:expand_wrapper"
+hostlist-compact = "hostlist.cli:compact_wrapper"
