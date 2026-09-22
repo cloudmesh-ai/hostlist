@@ -11,7 +11,7 @@ requires-python = ">=3.7"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "mkdocs", "mkdocs-material"]
 
 [project.scripts]
 hostlist = "hostlist.cli:main"
