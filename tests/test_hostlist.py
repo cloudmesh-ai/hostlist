@@ -13,6 +13,9 @@ from hostlist import Hostlist
     ("node1,node3,node2", "node1,node2,node3", "node[1-3]"),
     ("node[1-3],gpu[1-2]", "gpu1,gpu2,node1,node2,node3", "gpu[1-2],node[1-3]"),
     ("node[1-3].domain", "node1.domain,node2.domain,node3.domain", "node[1-3].domain"),
+    ("node[1-3],headnode", "headnode,node1,node2,node3", "headnode,node[1-3]"),
+    ("headnode,node[1-3]", "headnode,node1,node2,node3", "headnode,node[1-3]"),
+    ("node[1-3],gpu[1-2],special-srv", "gpu1,gpu2,node1,node2,node3,special-srv", "gpu[1-2],node[1-3],special-srv"),
     ("", "", ""),
 ])
 def test_expansion_and_compression(spec, expanded, compressed):

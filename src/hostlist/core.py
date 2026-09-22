@@ -13,16 +13,21 @@ _node_pat = re.compile(
     re.VERBOSE,
 )
 
-def _parse_node(host: str) -> tuple[str, int, str]:
-    """Parse a hostname into (prefix, number, suffix)."""
+def _parse_node(host: str) -> tuple[str, Union[int, None], str]:
+    """Parse a hostname into (prefix, number, suffix). Returns (host, None, "") if not numeric."""
     m = _node_pat.fullmatch(host)
-    if not m:
-        raise ValueError(f"Cannot parse host: {host!r}")
-    return m.group("prefix"), int(m.group("num")), m.group("suffix")
+    if m:
+        return m.group("prefix"), int(m.group("num")), m.group("suffix")
+    return host, None, ""
 
-def _group_by_prefix(nodes: Iterable[str]) -> dict[tuple[str, str], list[int]]:
+def _sort_key(h: str):
+    """Sort key that handles numeric and literal hosts."""
+    p, n, s = _parse_node(h)
+    return (p, n if n is not None else float('inf'), s)
+
+def _group_by_prefix(nodes: Iterable[str]) -> dict[tuple[str, str], list[Union[int, None]]]:
     """Group numbers by (prefix, suffix)."""
-    groups: dict[tuple[str, str], list[int]] = {}
+    groups: dict[tuple[str, str], list[Union[int, None]]] = {}
     for n in nodes:
         p, num, s = _parse_node(n)
         groups.setdefault((p, s), []).append(num)
@@ -149,14 +154,14 @@ class Hostlist:
                 raise ValueError(f"Invalid range in bracket for {token!r}: {e}")
 
         # Normalise ordering (numeric order per prefix/suffix)
-        expanded.sort(key=lambda h: _parse_node(h))
+        expanded.sort(key=_sort_key)
         return cls(tuple(expanded))
 
     @classmethod
     def from_list(cls, hosts: Iterable[str]) -> "Hostlist":
         """Create a Hostlist from an already‑expanded iterable."""
         # Convert to set to remove duplicates, then sort and tuple
-        sorted_hosts = sorted(set(hosts), key=lambda h: _parse_node(h))
+        sorted_hosts = sorted(set(hosts), key=_sort_key)
         return cls(tuple(sorted_hosts))
 
 
