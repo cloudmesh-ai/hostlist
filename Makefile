@@ -1,4 +1,4 @@
-.PHONY: all install test lint clean build
+.PHONY: all install test lint clean build serve publish
 
 all: test
 
@@ -21,3 +21,9 @@ clean:
 build:
 	pip install build
 	python -m build
+
+serve:
+	mkdocs serve
+
+publish:
+	mkdocs gh-deploy

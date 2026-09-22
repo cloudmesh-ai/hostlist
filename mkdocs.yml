@@ -1,0 +1,6 @@
+site_name: Hostlist
+theme:
+  name: material
+
+nav:
+  - Home: index.md
