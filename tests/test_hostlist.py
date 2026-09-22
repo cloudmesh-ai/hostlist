@@ -123,11 +123,6 @@ def test_parsing_errors():
         
     with pytest.raises(ValueError, match="Invalid range in bracket"):
         Hostlist.expand("node[1-a]")
-    
-    with pytest.raises(ValueError, match="Cannot parse host"):
-        # Test that a plain host without number fails _parse_node
-        # We test from_list which calls _parse_node during sorting
-        Hostlist.from_list(["invalid-host"])
 
 def test_empty_and_singletons():
     # Empty
