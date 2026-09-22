@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/index.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/api.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/cli.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/collection_api.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/compression.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/expansion.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/formatting.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+    <url>
+         <loc>https://cloudmesh-ai.github.io/hostlist/set_operations.html</loc>
+         <lastmod>2026-09-22</lastmod>
+    </url>
+</urlset>
